@@ -1,15 +1,107 @@
 <!DOCTYPE html>
 
-<!-- make a call to flickr API -->
+<!-- Plan: -->
+<!-- on load, make a call to flickr API -->
 <!-- load each of those photos in a grid -->
 <!-- make onclick event trigger lightbox -->
 
 <html>
 <head>
     <title>Puppy Lightbox</title>
+    <style>
+        body {
+            padding-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+        }
+
+        .column {
+            flex: 20%;
+            padding: 5px;
+        }
+        #photo-grid {
+            /*colors modeled after Gimmie brow+ panel*/
+            background-color: #FDE0E5;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+    <!-- Lightbox CSS -->
+    <link href="lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
 </head>
 <body>
+    
+    <script>
+        let miniPhoto, photoSlice, largePhoto;      
+        // data structure of returned json:
+        // map that we pass to jsonFlickrFeed as json
+        // map contains an array of 20 photos called items
+        // each item in items is a map with properties we can use
+        // each item has a media map with a key 'm' with src link
+        function jsonFlickrFeed(json) {
 
-    <script>console.log("JS up")</script>
+            // loop through each item in items array
+            // construct HTML for each item
+            // I'm going to make 4 rows with 5 images each
+            
+            let photoHTML = '<div class="row">';
+            for (let i = 0; i < 5; i += 1) {
+                miniPhoto = json.items[i].media.m;
+                photoSlice = miniPhoto.slice(0,-5);
+                largePhoto = photoSlice + 'b.jpg';
+                photoHTML += '<div class="column"><a href="' + largePhoto + '" class="image" data-lightbox="puppy" data-title="' + json.items[i].title + '">';
+                photoHTML += '<img alt="Puppy" style="width:100%" src="' + miniPhoto + '"></a></div>';
+            } // end for
+            photoHTML += '</div>';
+
+            photoHTML += '<div class="row">';
+            for (let i = 5; i < 10; i += 1) {
+                miniPhoto = json.items[i].media.m;
+                photoSlice = miniPhoto.slice(0,-5);
+                largePhoto = photoSlice + 'b.jpg';
+                photoHTML += '<div class="column"><a href="' + largePhoto + '" class="image" data-lightbox="puppy" data-title="' + json.items[i].title + '">';
+                photoHTML += '<img alt="Puppy" style="width:100%" src="' + miniPhoto + '"></a></div>';
+            } // end for
+            photoHTML += '</div>';
+
+            photoHTML += '<div class="row">';
+            for (let i = 10; i < 15; i += 1) {
+                miniPhoto = json.items[i].media.m;
+                photoSlice = miniPhoto.slice(0,-5);
+                largePhoto = photoSlice + 'b.jpg';
+                photoHTML += '<div class="column"><a href="' + largePhoto + '" class="image" data-lightbox="puppy" data-title="' + json.items[i].title + '">';
+                photoHTML += '<img alt="Puppy" style="width:100%" src="' + miniPhoto + '"></a></div>';
+            } // end for
+            photoHTML += '</div>';
+
+            photoHTML += '<div class="row">';
+            for (let i = 15; i < 20; i += 1) {
+                miniPhoto = json.items[i].media.m;
+                photoSlice = miniPhoto.slice(0,-5);
+                largePhoto = photoSlice + 'b.jpg';
+                photoHTML += '<div class="column"><a href="' + largePhoto + '" class="image" data-lightbox="puppy" data-title="' + json.items[i].title + '">';
+                photoHTML += '<img alt="Puppy" style="width:100%" src="' + miniPhoto + '"></a></div>';
+            } // end for
+            photoHTML += '</div>';
+
+            // select photo-grid and add the HTML we made
+            let grid = document.querySelector("#photo-grid");
+            grid.innerHTML = photoHTML;
+        } // end function
+
+    </script>
+
+    <div id="photo-grid"></div>
+
+    <!-- This API call includes a callback to jsonFlickrFeed function-->
+    <script src="https://api.flickr.com/services/feeds/photos_public.gne?tags=puppies&format=json" async>
+    </script>
+
+    <!-- Lightbox JS -->
+    <script src="lightbox2-master/dist/js/lightbox-plus-jquery.js"></script>
 </body>
 </html>
