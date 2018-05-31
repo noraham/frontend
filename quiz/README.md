@@ -13,7 +13,7 @@ My quiz was inspired by [this article](http://www.businessinsider.com/science-qu
 from your terminal, create a new folder and clone this repo `git clone https://github.com/noraham/frontend.git`
 
 1) Ensure you have npm, python and pip installed on your machine.
-2) Go to the static directory `cd frontend/quiz/fullstack_template/static` and execute `npm install`
+2) Go to the static directory `cd frontend/quiz/static` and execute `npm install`
 This will download and install the dependencies listed in package.json.
 3) In the same directory, start the npm watcher to build the front end code, this will run in dev-mode in this terminal window. `npm run watch`
 4) In a separate terminal window, create a python virtualenv: 
@@ -23,7 +23,7 @@ This will download and install the dependencies listed in package.json.
 `source activate` 
 4) Install flask in your virtual environment. `pip install flask`
 5) From your virtual environment, cd back to the cloned repo and start the server:
-`cd frontend/quiz/fullstack_template/server`
+`cd frontend/quiz/server`
 `python server.py`
 6) The quiz app is now running locally! To access it, open [http://localhost:5000](http://localhost:5000) in your browser.
 
