@@ -1,6 +1,7 @@
 // App.jsx
 import React from "react";
 import Popup from './popup.jsx';
+import Answers from './answers.jsx';
 import quizLegend from './assets/quizLegend.js'; // bringing this in as JS object
 // require('../css/app.css');
 
@@ -18,7 +19,8 @@ export default class Quiz extends React.Component {
             displayPopup: 'flex', // determines whether popup will be rendered in DOM
             quest: quizLegend.questions[0].question,
             answerOptions: [quizLegend.questions[0].answers[0], quizLegend.questions[0].answers[1]],
-            correct: quizLegend.questions[0].correct
+            correct: quizLegend.questions[0].correct,
+            classNames: ['', '']
         };
 
         this.getQuest = this.getQuest.bind(this); // required to bind the correct this
@@ -49,7 +51,8 @@ export default class Quiz extends React.Component {
             this.getQuest();
             this.setState({
                 showButton: false,
-                questionAnswered: false
+                questionAnswered: false,
+                classNames: ['', '']
             });
         }
     }
@@ -74,7 +77,7 @@ export default class Quiz extends React.Component {
     }
 
     render() {
-        let { spot, total, showButton, questionAnswered, displayPopup, score, quest, answerOptions, correct} = this.state;
+        let { spot, total, showButton, questionAnswered, displayPopup, score, quest, answerOptions, correct, classNames} = this.state;
 
         return (
             <div className="container">
@@ -87,6 +90,7 @@ export default class Quiz extends React.Component {
                             <h4>Question {spot + 1}/{total}</h4>
                             <p>{quest}</p>
                         </div>
+                        <Answers answers={answerOptions} correct={correct} showButton={this.handleShowButton} isAnswered={questionAnswered} increaseScore={this.handleIncreaseScore} colorsFromParent={classNames}/>
                         <div id="submit">
                             {showButton ? <button className="fancy-btn" onClick={this.nextStep} >{spot===9 ? 'Finish quiz' : 'Next question'}</button> : null}
                         </div>
