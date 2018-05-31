@@ -7,8 +7,8 @@ class Popup extends React.Component {
         // set these states to start with, will change them as quiz progresses
         this.state = {
             time: 'start',
-            title: 'Title',
-            text: 'Text' ,
+            title: "10 simple questions to test the public\'s knowledge of science.",
+            text: "Every two years, the National Science Foundation is required to tell the president how the US is doing in regard to science and engineering.<br /><br /> As part of their report, they develop these 10 questions to get a general gauge on the public\'s understanding of science. <br /><br /> Can you correctly answer them all?" ,
             buttonText: 'Start the quiz' 
         };
         
@@ -32,9 +32,12 @@ class Popup extends React.Component {
         }
     }
 
-    // why is this necessary?
-    createMarkup(text) {
-        return {__html: text};
+    showScore() {
+        // if time is end, generate this before showing end popup
+        this.setState({
+            //if else for below or above average
+            text: 'You have completed the quiz. <br /> You got: <strong>' + this.props.score + '</strong> questions right. The average American scored 6/10'
+        })
     }
 
     render() {
@@ -49,7 +52,10 @@ class Popup extends React.Component {
                     <div className="col-md-8 col-md-offset-2">
                         <div className="popup">
                             <h1>{title}</h1>
-                            <p dangerouslySetInnerHTML={this.createMarkup(text)} />
+                            <div> {text.split("<br />").map(i => {
+                                    return <p>{i}</p>;
+                                    })}
+                            </div>
                             <button className="fancy-btn" onClick={this.popupHandle}>{buttonText}</button>
                         </div>
                     </div>
