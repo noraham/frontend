@@ -35,10 +35,12 @@ This will download and install the dependencies listed in package.json.
 
 ## Temporary Workaround
 My CSS is not connecting properly to my site. For now, after step 3, make sure that `npm run watch` command built 3 files in `static/dist/`, then open `static/js/App.js` and comment out line 7: 
-turn ```javascript
+turn 
+```javascript
 require('../css/app.css');
 ```
-into ```javascript
+into 
+```javascript
 // require('../css/app.css');
 ```
 Empty the cache and hard reload on your browser and the site should render correctly. Working on a solution to this problem, will update once it's solved.
