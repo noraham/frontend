@@ -3,7 +3,8 @@ import React from "react";
 import Popup from './popup.jsx';
 import Answers from './answers.jsx';
 import quizLegend from './assets/quizLegend.js'; // bringing this in as JS object
-// require('../css/app.css');
+
+require('../css/app.css');
 
 export default class Quiz extends React.Component {
     constructor (props) {
@@ -116,10 +117,3 @@ export default class Quiz extends React.Component {
         );
     }
 }
-
-// components to build
-// Question
-// Question Count
-// Answer Options
-// Result
-
