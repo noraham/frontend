@@ -1,6 +1,7 @@
 # Flickr Lightbox
 
 ## Installing and Running
-from your terminal, create a new folder and clone this repo `git clone https://github.com/noraham/frontend.git`
+From your terminal, create a new folder and clone this repo 
+`git clone https://github.com/noraham/frontend.git`
 
-1) Open flickrdisplay.html in your browser.
+Navigate to flickrdisplay.html and open it in your browser.
