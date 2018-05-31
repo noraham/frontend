@@ -1,16 +1,16 @@
 /* Note: sarted with the css from florinpop17's quiz app and modified from there */
 /*source: https://github.com/florinpop17/quiz-app/blob/master/app/styles/app.css*/
 body {
-    background-color: #e4e4e4;
+    background-color: ivory;
     font-family: Open Sans;
     margin-top: 10%;
     margin-bottom: 50px;
 }
 
 #question {
-    background-color: #0094da;
+    background-color: #FDE0E5;
     color: white;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -19,16 +19,18 @@ body {
     color: #0b0e21;
     display:inline-block;
     padding: 10px 25px;
-    font-size: 20px;
     font-weight: 600;
+    font: 20px Snell Roundhand, cursive;
+    letter-spacing: 1px;
 }
 
 #question p{
     font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     padding-left: 50px;
     padding-right: 50px;
+    margin-bottom: 0px;
+    color: black;
 }
 
 #answers ul{
@@ -42,7 +44,7 @@ body {
 
 #answers li {
     background-color: #fff;
-    border: 2px solid #0094da;
+    border: 2px solid #FDE0E5;
     min-height: 70px;
     width: 48%;
     display: flex;
@@ -52,7 +54,7 @@ body {
 }
 
 #answers li span {
-    background-color: #0084da;
+    background-color: #F7386B;
     color: #fff;
     flex: 75px;
     display: flex;
@@ -65,7 +67,6 @@ body {
 #answers li p {
     color: #0b0e21;
     font-size: 25px;
-    font-weight: 600;
     flex: calc(100% - 75px);
     margin: auto 20px;
     transition: color .3s ease;
@@ -115,18 +116,17 @@ body {
     border: 2px solid #0b0e21;
     border-radius: 0;
     background-color: #0b0e21;
-    color: #fff;
+    color: #FDE0E5;
     display: inline-block;
-    font-size: 18px;
-    font-weight: 600;
+    font: 30px Snell Roundhand, cursive;
+    letter-spacing: 2px;
     padding: 14px 75px;
     margin: 0 auto;
-    text-transform: uppercase;
     transition: color .2s ease, background-color .2s ease;
 }
 
 .fancy-btn:hover {
-    background-color: #fff;
+    background-color: #FDE0E5;
     color: #0b0e21;
 }
 
@@ -151,16 +151,16 @@ body {
 }
 
 .popup h1 {
-    background-color: #0094da;
-    color: white;
+    background-color: #FDE0E5;
+    color: black;
     border-bottom: 1px solid #ccc;
     padding: 20px;
     margin-top: 0;
+    font: 40px Snell Roundhand, cursive;
 }
 
 .popup p {
     font-size: 18px;
-    letter-spacing: 1px;
     margin: 20px 10% 0;
 }
 

@@ -59,7 +59,7 @@ class Popup extends React.Component {
         return (
             <div className="popup-container" style={style}>
                 <div className="container">
-                    <div className="col-md-8 col-md-offset-2">
+                    <div className="">
                         <div className="popup">
                             <h1>{title}</h1>
                             <div> {text.split("<br />").map(i => {
