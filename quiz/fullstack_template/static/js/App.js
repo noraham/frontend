@@ -20,7 +20,8 @@ export default class Quiz extends React.Component {
             quest: quizLegend.questions[0].question,
             answerOptions: [quizLegend.questions[0].answers[0], quizLegend.questions[0].answers[1]],
             correct: quizLegend.questions[0].correct,
-            classNames: ['', '']
+            classNames: ['', ''],
+            finalText: ""
         };
 
         this.getQuest = this.getQuest.bind(this); // required to bind the correct this
@@ -43,8 +44,23 @@ export default class Quiz extends React.Component {
         if (this.state.spot == 9) {
             // if all questions have been shown, bring popup back
             this.setState({
-                displayPopup: 'flex'
+                displayPopup: 'flex',
             });
+            if (this.state.score === 6) {
+                this.setState({
+                    finalText: 'You have completed the quiz. <br /> You got ' + this.state.score + ' questions right, which matches the average American score.'
+                });
+            }
+            if (this.state.score > 6) {
+                this.setState({
+                    finalText: 'You have completed the quiz. <br /> You got ' + this.state.score + ' questions right, which is above the average American score. <br /> Great job!'
+                });
+            }
+            if (this.state.score < 6) {
+                this.setState({
+                    finalText: 'You have completed the quiz. <br /> You got ' + this.state.score + ' questions right, which is below the average American score. <br /> The US lags behind dozens of countries in STEM degrees, which could impair our future capacity for innovation and success.'
+                });
+            }
         } else {
             // else, advance spot, reassign states for new question
             this.state.spot += 1;
@@ -77,12 +93,12 @@ export default class Quiz extends React.Component {
     }
 
     render() {
-        let { spot, total, showButton, questionAnswered, displayPopup, score, quest, answerOptions, correct, classNames} = this.state;
+        let { spot, total, showButton, questionAnswered, displayPopup, score, quest, answerOptions, correct, classNames, finalText} = this.state;
 
         return (
             <div className="container">
 
-                <Popup style={{display: displayPopup}} score={score} total={total} startQuiz={this.handleStartQuiz}/>
+                <Popup style={{display: displayPopup}} score={score} startQuiz={this.handleStartQuiz} finalText={finalText}/>
 
                 <div className="row">
                     <div className="col-lg-10 col-lg-offset-1">

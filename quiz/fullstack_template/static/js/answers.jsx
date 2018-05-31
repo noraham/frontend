@@ -34,7 +34,6 @@ class Answers extends React.Component {
 
     render() {
         let { answers } = this.props;
-        let { classNames } = this.props.colorsFromParent;
 
         return (
             <div id="answers">

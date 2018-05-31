@@ -27,17 +27,27 @@ class Popup extends React.Component {
             });
             // calls handleStartQuiz in App.js
             this.props.startQuiz();
-        } else {            
+            this.setState({
+                text: this.props.finalText
+            });
+            this.state.props ? console.log("true") : console.log("false")
+        } else {
+            this.setState({
+                text: this.props.finalText
+            });           
             location.reload(); // restart the application to retake quiz
         }
     }
 
-    showScore() {
-        // if time is end, generate this before showing end popup
-        this.setState({
-            //if else for below or above average
-            text: 'You have completed the quiz. <br /> You got: <strong>' + this.props.score + '</strong> questions right. The average American scored 6/10'
-        })
+    static getDerivedStateFromProps(nextProps, prevState) {
+        // if time is end, pass final text from parent and reassign popup text before showing
+        // calculate next state based on change in props
+        if (nextProps.finalText > prevState.text) {
+            return {
+                text: nextProps.finalText
+            };
+        }
+        return null;
     }
 
     render() {
