@@ -14,6 +14,12 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+        h1 {
+            color: #F7386B;
+            font: 50px Snell Roundhand, cursive;
+            text-align: center;
+            margin: 0px;
+        }
         .row {
             display: flex;
             align-items: center;
@@ -63,7 +69,7 @@
             // construct HTML for each item
             // I'm going to make 4 rows with 5 images each
             
-            let photoHTML = '<div class="row">';
+            let photoHTML = '<h1>Flickr\'s Freshest Puppies</h1><div class="row">';
             for (let i = 0; i < 5; i += 1) {
                 miniPhoto = json.items[i].media.m;
                 photoSlice = miniPhoto.slice(0,-5);
@@ -110,7 +116,8 @@
 
     </script>
 
-    <div id="photo-grid"></div>
+    <div id="photo-grid">
+    </div>
 
     <!-- This API call includes a callback to jsonFlickrFeed function-->
     <script src="https://api.flickr.com/services/feeds/photos_public.gne?tags=puppies&format=json" async>

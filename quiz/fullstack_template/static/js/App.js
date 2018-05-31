@@ -14,49 +14,81 @@ export default class Quiz extends React.Component {
             total: 10, // hard coding total since it is defined in project description
             showButton: false, // continue button that appears when question is answered
             questionAnswered: false, // keeps track of where we are in question presentation
-            score: 0,
-            displayPopup: 'flex' // determines whether popup will be rendered in DOM
+            score: 0, // user's soore, live updated during quiz
+            displayPopup: 'flex', // determines whether popup will be rendered in DOM
+            quest: quizLegend.questions[0].question,
+            answerOptions: [quizLegend.questions[0].answers[0], quizLegend.questions[0].answers[1]],
+            correct: quizLegend.questions[0].correct
         };
 
         this.getQuest = this.getQuest.bind(this); // required to bind the correct this
-        // this.nextQuestion = this.nextQuestion.bind(this);
-        // this.handleShowButton = this.handleShowButton.bind(this);
-        // this.handleStartQuiz = this.handleStartQuiz.bind(this);
-        // this.handleIncreaseScore = this.handleIncreaseScore.bind(this);
+        this.nextStep = this.nextStep.bind(this);
+        this.handleShowButton = this.handleShowButton.bind(this);
+        this.handleStartQuiz = this.handleStartQuiz.bind(this);
+        this.handleIncreaseScore = this.handleIncreaseScore.bind(this);
     }
 
     getQuest() {
-        alert(quizLegend.questions[this.state.spot].question)
-        this.state.spot += 1
-        if (this.state.spot == 10) {
-            this.endQuiz();
+        // re-assign these states with each question
+        this.setState({
+            quest: quizLegend.questions[this.state.spot].question,
+            answerOptions: [quizLegend.questions[this.state.spot].answers[0], quizLegend.questions[this.state.spot].answers[1]],
+            correct: quizLegend.questions[this.state.spot].correct
+        });
+    }
+
+    nextStep() {
+        if (this.state.spot == 9) {
+            // if all questions have been shown, bring popup back
+            this.setState({
+                displayPopup: 'flex'
+            });
+        } else {
+            // else, advance spot, reassign states for new question
+            this.state.spot += 1;
+            this.getQuest();
+            this.setState({
+                showButton: false,
+                questionAnswered: false
+            });
         }
     }
 
-    endQuiz() {
-        // shuttled here when through questions
-        // need to prevent clicking of other buttons
-        console.log("done")
+    handleShowButton() {
+        this.setState({
+            showButton: true,
+            questionAnswered: true
+        })
+    }
+
+    handleStartQuiz() {
+        this.setState({
+            displayPopup: 'none'
+        });
+    }
+
+    handleIncreaseScore() {
+        this.setState({
+            score: this.state.score + 1
+        });
     }
 
     render() {
-        let { spot, total, showButton, questionAnswered, displayPopup, score} = this.state;
+        let { spot, total, showButton, questionAnswered, displayPopup, score, quest, answerOptions, correct} = this.state;
 
         return (
             <div className="container">
 
-                // This calls Popup component and decides whether to display based on state of displayPopup
-                <Popup style={{display: displayPopup}} startQuiz={this.handleStartQuiz}/>
+                <Popup style={{display: displayPopup}} score={score} total={total} startQuiz={this.handleStartQuiz}/>
 
                 <div className="row">
                     <div className="col-lg-10 col-lg-offset-1">
                         <div id="question">
                             <h4>Question {spot + 1}/{total}</h4>
-                            
+                            <p>{quest}</p>
                         </div>
                         <div id="submit">
-                            /* deciding what to show: checks if question is answered or if quiz is over, displays correct text. Does not appear until question is answered */
-                            {showButton ? <button className="fancy-btn" onClick={this.nextQuestion} >{spot===total ? 'Finish quiz' : 'Next question'}</button> : null}
+                            {showButton ? <button className="fancy-btn" onClick={this.nextStep} >{spot===9 ? 'Finish quiz' : 'Next question'}</button> : null}
                         </div>
                     </div>
                 </div>

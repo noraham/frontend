@@ -25,7 +25,7 @@ class Popup extends React.Component {
                 title: 'Congratulations!',
                 buttonText: 'Restart'
             });
-            // starts quiz in App.js
+            // calls handleStartQuiz in App.js
             this.props.startQuiz();
         } else {            
             location.reload(); // restart the application
