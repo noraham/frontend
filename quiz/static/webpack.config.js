@@ -10,23 +10,6 @@ const config = {
     resolve: {
         extensions: ['.js', '.jsx', '.css']
     },
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
-      }
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: "app.css",
-      })
-    ],
     module: {
       rules: [
         {
@@ -36,10 +19,15 @@ const config = {
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader']
+          use:  [MiniCssExtractPlugin.loader, 'css-loader']
         },
       ]
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "app.css",
+      })
+    ],
 };
 
 module.exports = config;

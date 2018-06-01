@@ -1,10 +1,8 @@
-// App.jsx
 import React from "react";
 import Popup from './popup.jsx';
 import Answers from './answers.jsx';
 import quizLegend from './assets/quizLegend.js'; // bringing this in as JS object
-
-require('../css/app.css');
+import '../css/app';
 
 export default class Quiz extends React.Component {
     constructor (props) {

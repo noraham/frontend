@@ -32,15 +32,3 @@ This will download and install the dependencies listed in package.json.
 `cd frontend/quiz/server`
 `python server.py`
 6) The quiz app is now running locally! To access it, open [http://localhost:5000](http://localhost:5000) in your browser.
-
-## Temporary Workaround
-My CSS is not connecting properly to my site. For now, after step 3, make sure that `npm run watch` command built 3 files in `static/dist/`, then open `static/js/App.js` and comment out line 7: 
-turn 
-```javascript
-require('../css/app.css');
-```
-into 
-```javascript
-// require('../css/app.css');
-```
-Empty the cache and hard reload on your browser and the site should render correctly. Working on a solution to this problem, will update once it's solved.

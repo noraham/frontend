@@ -3,7 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Quiz from "./App";
 
-
 ReactDOM.render(
     <Quiz />, document.getElementById("content")
 );
