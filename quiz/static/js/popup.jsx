@@ -62,9 +62,7 @@ class Popup extends React.Component {
                     <div className="">
                         <div className="popup">
                             <h1>{title}</h1>
-                            <div> {text.split("<br />").map(i => {
-                                    return <p>{i}</p>;
-                                    })}
+                            <div> {text.split("<br />").map((text, i) => <p key={i}>{text}</p>)}
                             </div>
                             <button className="fancy-btn" onClick={this.popupHandle}>{buttonText}</button>
                         </div>
